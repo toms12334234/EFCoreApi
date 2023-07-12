@@ -9,19 +9,19 @@ namespace ItemService.API.Controllers
         [HttpGet]
         public async Task<object> GetItems()
         {
-            return null;
+            return await Task.FromResult("Hello");
         }
         
         [HttpGet]
         public async Task<object> GetItem(int id)
         {
-            return null;
+            return await Task.FromResult("Hello");
         }
 
         [HttpPost]
         public async Task<object> AddItem(string name)
         {
-            return null;
+            return await Task.FromResult("Hello");
         }
     }
 }
