@@ -1,0 +1,21 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemService.Data", "ItemService.Data\ItemService.Data.csproj", "{783A8990-D70F-450C-8649-632036F43381}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemService.API", "ItemService.API\ItemService.API.csproj", "{D3D6D5D2-10EA-4A37-BC23-C4240139256C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{783A8990-D70F-450C-8649-632036F43381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783A8990-D70F-450C-8649-632036F43381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783A8990-D70F-450C-8649-632036F43381}.Release|Any CPU.Build.0 = Release|Any CPU
+		{783A8990-D70F-450C-8649-632036F43381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D6D5D2-10EA-4A37-BC23-C4240139256C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D6D5D2-10EA-4A37-BC23-C4240139256C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D6D5D2-10EA-4A37-BC23-C4240139256C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D6D5D2-10EA-4A37-BC23-C4240139256C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
