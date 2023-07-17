@@ -17,27 +17,30 @@ namespace ItemService.API.Controllers
         }
         
         [HttpGet]
-        public async Task<object> GetItems()
+        public ActionResult<List<Item>> GetItems()
         {
-            return _appDbContext.Items;
+            var result = _appDbContext.Items.ToList();
+            return Ok(result);
         }
         
         [HttpGet]
-        public async Task<object> GetItem(int id)
+        public async Task<ActionResult<Item>> GetItemAsync(int id)
         {
-            Item item = _appDbContext.Items.FirstOrDefault(x=>x.Id == id);
-            return item != null 
-                ? new OkObjectResult(item)
-                : new NotFoundResult();
+            Item? item = await _appDbContext.Items.FirstOrDefaultAsync(x => x.Id == id);
+            if (item is null)
+            {
+                return NotFound();
+            }
+            return Ok(item);
         }
 
         [HttpPost]
-        public async Task<object> AddItem(string name)
+        public async Task<ActionResult<Item>> AddItemAsync(string name)
         {
-            Item item = new Item(){Name=name};
+            Item item = new(){Name=name};
             await _appDbContext.Items.AddAsync(item);
             await _appDbContext.SaveChangesAsync();
-            return Created("this", item);
+            return Ok(item);
         }
     }
 }
