@@ -1,5 +1,5 @@
-using ItemService.Data;
 using Microsoft.EntityFrameworkCore;
+using ItemService.Infrastructure;
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.Development.json")

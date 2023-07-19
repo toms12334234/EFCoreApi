@@ -1,5 +1,5 @@
-﻿using ItemService.Data;
-using ItemService.Data.Models;
+﻿using ItemService.Domain.Models;
+using ItemService.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
