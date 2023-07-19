@@ -16,7 +16,7 @@ public class ItemRepository : ItemService.Domain.IItemRepository
         return _itemPersistance.GetItems();
     }
 
-    public Task<Item> GetItemAsync(int id)
+    public Task<Item?> GetItemAsync(int id)
     {
         return _itemPersistance.GetItemAsync(id);
     }
