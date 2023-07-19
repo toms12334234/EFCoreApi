@@ -1,7 +1,7 @@
-﻿using ItemService.Data.Models;
+﻿using ItemService.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ItemService.Data
+namespace ItemService.Infrastructure
 {
     public class AppDbContext : DbContext
     {

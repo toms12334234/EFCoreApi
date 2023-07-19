@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace ItemService.Data.Migrations
+namespace ItemService.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialCreateOnion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

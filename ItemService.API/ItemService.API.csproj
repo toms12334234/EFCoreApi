@@ -17,7 +17,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ItemService.Data\ItemService.Data.csproj" />
+      <ProjectReference Include="..\ItemService.Application\ItemService.Application.csproj" />
+      <ProjectReference Include="..\ItemService.Infrastructure\ItemService.Infrastructure.csproj" />
+      <ProjectReference Include="..\ItemService.Domain\ItemService.Domain.csproj" />
     </ItemGroup>
 
 </Project>

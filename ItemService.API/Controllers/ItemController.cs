@@ -1,7 +1,6 @@
-﻿using ItemService.Data;
-using ItemService.Data.Models;
+﻿using ItemService.Domain;
+using ItemService.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ItemService.API.Controllers
 {
@@ -9,24 +8,24 @@ namespace ItemService.API.Controllers
     [Route("[controller]/[action]")]
     public class ItemController : ControllerBase
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly IItemRepository _itemRepository;
 
-        public ItemController(AppDbContext appDbContext)
+        public ItemController(IItemRepository itemRepository)
         {
-            _appDbContext = appDbContext;
+            _itemRepository = itemRepository;
         }
         
         [HttpGet]
         public ActionResult<List<Item>> GetItems()
         {
-            var result = _appDbContext.Items.ToList();
+            var result = _itemRepository.GetItems();
             return Ok(result);
         }
         
         [HttpGet]
         public async Task<ActionResult<Item>> GetItemAsync(int id)
         {
-            Item? item = await _appDbContext.Items.FirstOrDefaultAsync(x => x.Id == id);
+            Item? item = await _itemRepository.GetItemAsync(id);
             if (item is null)
             {
                 return NotFound();
@@ -37,9 +36,7 @@ namespace ItemService.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Item>> AddItemAsync(string name)
         {
-            Item item = new(){Name=name};
-            await _appDbContext.Items.AddAsync(item);
-            await _appDbContext.SaveChangesAsync();
+            Item item = await _itemRepository.AddItemAsync(name);
             return Ok(item);
         }
     }
