@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ItemService.Data.Models
+namespace ItemService.Domain.Models
 {
     public class Item
     {
