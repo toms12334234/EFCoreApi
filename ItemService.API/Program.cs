@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ItemService.Infrastructure;
+using ItemService.Application;
+using ItemService.Domain;
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.Development.json")
@@ -14,6 +16,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContextPool<AppDbContext>(o => o.UseSqlServer(config.GetConnectionString("app")));
+
+builder.Services.AddTransient<IItemPersistance, ItemPersistance>();
+builder.Services.AddTransient<IItemRepository, ItemRepository>();
+
 
 var app = builder.Build();
 
