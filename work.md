@@ -79,3 +79,62 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
       INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
       VALUES (N'20230717091412_InitialCreate', N'7.0.9');
 Done.'''
+
+# Sprint 2: Omzetten naar onion architecture
+
+- Alles omgezet naar onion architecture. Klaar om nieuwe database aan te gaan maken met EFCore
+- Initial create geslaagd:
+PS D:\Repos\Temp\EFCoreApi\ItemService.Infrastructure> dotnet ef --startup-project ..\ItemService.API\ migrations add InitialCreateOnion
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
+PS D:\Repos\Temp\EFCoreApi\ItemService.Infrastructure> 
+- Database succesvol aangemaakt:
+PS D:\Repos\Temp\EFCoreApi\ItemService.Infrastructure> dotnet ef --startup-project ..\ItemService.API\ database update
+Build started...
+Build succeeded.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (223ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+      CREATE DATABASE [ItemServiceOnion];
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (53ms) [Parameters=[], CommandType='Text', CommandTimeout='60']
+      IF SERVERPROPERTY('EngineEdition') <> 5
+      BEGIN
+          ALTER DATABASE [ItemServiceOnion] SET READ_COMMITTED_SNAPSHOT ON;
+      END;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [__EFMigrationsHistory] (
+          [MigrationId] nvarchar(150) NOT NULL,
+          [ProductVersion] nvarchar(32) NOT NULL,
+          CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [MigrationId], [ProductVersion]
+      FROM [__EFMigrationsHistory]
+      ORDER BY [MigrationId];
+info: Microsoft.EntityFrameworkCore.Migrations[20402]
+      Applying migration '20230719175924_InitialCreateOnion'.
+Applying migration '20230719175924_InitialCreateOnion'.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      CREATE TABLE [Items] (
+          [Id] int NOT NULL IDENTITY,
+          [Name] nvarchar(max) NOT NULL,
+          CONSTRAINT [PK_Items] PRIMARY KEY ([Id])
+      );
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+      VALUES (N'20230719175924_InitialCreateOnion', N'7.0.9');
+Done.
